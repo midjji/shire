@@ -1,37 +1,25 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/midjji/shire/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+### Sequential Hierarchical Ransac (Shire)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This is the reference implementation of shire, a realtime method for detecting and estimating the 6d pose trajectories of independently moving objects. The method was published [visapp2021](https://www.cvl.isy.liu.se/research/datasets/imo-dataset/associated_paper.pdf)
+
+Shire requires a klt which is proprietary, but the annotation and evaluation tools aswell as the dataset are available and compile without it. 
+
+
+
+[dataset](https://www.cvl.isy.liu.se/research/datasets/imo-dataset/dataset.zip) or [alt download link](https://drive.google.com/file/d/1XW5DjpFO1FZKp6MX_HwV_d1iAvNZr-fH/view?usp=sharing)
+
+<video style="display:block; margin: 0 auto;width:100%;" poster="https://www.cvl.isy.liu.se/research/datasets/imo-dataset/shire-example-thumbnail.png" controls>  
+  <source src="https://www.cvl.isy.liu.se/research/datasets/imo-dataset/shire.mp4" type="video/mp4"> 
+</video>
+
+
+## Video tag in markdown
+- style width works, width does not... 
+- use ffmpeg  -i input -start_number 0 -an -c:v libx264 -preset veryslow -pix_fmt yuv420p -movflags +faststart -crf 17 output.mp4
+
 
 ### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/midjji/shire/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+[editor on GitHub](https://github.com/midjji/shire/edit/gh-pages/index.md)
+[GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+[documentation](https://docs.github.com/categories/github-pages-basics/)
