@@ -9,11 +9,11 @@
 #include "klt_cuda/h/klt_tracker.h"
 #include "paramHandling/h/paramHandlingGUI.h"
 
-#include <utils/ekf_wrapper.h>
+
 #include <sfm/sample.h>
 #include <map.h>
 #include <imo.h>
-
+#include <mlib/sfm/p3p/pnp_ransac.h>
 
 namespace cvl{
 
@@ -73,7 +73,7 @@ public:
 
 private:
     ParamSet params;
-    EkfWrapper ekf;
+
     std::shared_ptr<KLT_CUDA_Tracker::CKLT_Tracker<unsigned short>> tracker=nullptr;
     std::shared_ptr<KLT_CUDA_Tracker::CKLT_Tracker<unsigned short>> retracker=nullptr;
 
@@ -90,8 +90,7 @@ private:
 
     void bundle_egomotion();
     void save_results(int result_nr);
-    void compute_velocity_results(std::vector<std::shared_ptr<Measurement>> ms,
-                                  std::vector<Vector7d> states);
+
     void display(std::shared_ptr<HirSample> sd,
                  std::shared_ptr<PoseImo> new_imo);
     void printTimers();

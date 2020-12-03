@@ -3,12 +3,11 @@ file(GLOB   apps  "*.cpp")
 
 # be specific to simplify...
 set(apps "")
-if(HAS_KLT)
-    list(APPEND apps test_parameditor.cpp)
+if(HAS_KLT)    
     list(APPEND apps daimler-hir.cpp)
     list(APPEND apps kitti-hir.cpp)
-    if(WITH_MLIB_CUDA)
-        list(APPEND apps mots-hir.cpp)
+    if(WITH_MLIB_CUDA)        
+        #list(APPEND apps mots-hir.cpp)
     endif()
 endif()
 

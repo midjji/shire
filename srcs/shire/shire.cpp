@@ -239,7 +239,7 @@ void refine_all(std::vector<std::shared_ptr<Measurement>>& ms){
 
 bool in_forbidden_zone(Vector2d y){
     double row=y[0];
-    double col=y[1];
+    //double col=y[1];
     return row>842;
 }
 
@@ -310,7 +310,7 @@ void Shire::operator()(std::shared_ptr<HirSample>& sd){
         }
         map->push(tp);
         first=false;
-        if(run_ekf) ekf.init();
+
         return;
     }
 
@@ -814,116 +814,12 @@ void Shire::bundle_egomotion(){
 }
 
 
-void Shire::compute_velocity_results(
-        std::vector<std::shared_ptr<Measurement>> ms,
-        std::vector<Vector7d> states)
-{
-#if 0
-    mlog()<<"gotten states\n";
-    assert(ms.size()==states.size());// same size as pool on last filter update
-
-
-    // now for each imo, find measurements and state velocity pairs
-    std::map<int, std::vector<std::pair<Vector3d,Vector3d>>> vs,vs2;
-
-    for(uint i=0;i<ms.size();++i){
-        auto& m=ms[i];
-        auto& s=states[i];
-        if(m==nullptr) continue;
-        if(s[6]==0) continue;
-        if(m->feature->size()<2) continue;
-        auto imo=m->feature->get_imo();
-        int imoid=0; // world,
-        if(imo!=nullptr) imoid=imo->id;
-
-        Vector3d imo_v=m->feature->world_velocity();
-        Vector3d ekf_v(s[3],s[4],s[5]);
-        if(imo_v.isnormal() && ekf_v.isnormal()){
-            vs2[imoid].reserve(500);
-            vs2[imoid].push_back(std::make_pair(imo_v,ekf_v));
-        }
-    }
-    // only when we have atleast 20 of each
-    for(auto v:vs2)
-        if(v.second.size()>20){
-            vs[v.first]=v.second;
-        }
-    // oki now compute the mean of each...
-    std::map<int,std::pair<Vector3d,Vector3d>> means;
-    for(auto v:vs){
-        std::vector<std::pair<Vector3d,Vector3d>> obs=v.second;
-        Vector3d mean_imo_v(0,0,0);
-        Vector3d mean_ekf_v(0,0,0);
-        double count=obs.size();
-        for(auto [i,e]:obs){
-            mean_imo_v+=i/count;
-            mean_ekf_v+=e/count;
-        }
-        means[v.first]=std::make_pair(mean_imo_v, mean_ekf_v);
-    }
-    // oki now compute the variance of each...
-    std::map<int, std::pair<Vector3d,Vector3d>> vars;
-    for(auto v:vs)
-    {
-        std::vector<std::pair<Vector3d,Vector3d>> obs=v.second;
-        Vector3d mean_imo_v=means[v.first].first;
-        Vector3d mean_ekf_v=means[v.first].first;
-        Vector3d var_imo_v(0,0,0);
-        Vector3d var_ekf_v(0,0,0);
-
-        double count=obs.size();
-        for(auto [i,e]:obs)
-        {
-            var_imo_v+=(i-mean_imo_v).squaredNorm()/count;
-            var_ekf_v+=(i-mean_ekf_v).squaredNorm()/count;
-        }
-        vars[v.first]=std::make_pair(var_imo_v, var_ekf_v);
-    }
-    // now I have a bunch of observations of the mean and variance of the imos velocity.
-
-
-    // then do the same for the ages?
-
-
-
-
-
-
-
-
-    for(uint i=0;i<ms.size();++i){
-
-
-        auto& m=tp->ms[i];
-        auto& s=states[i];
-        if(m==nullptr) continue;
-
-        if(m->feature->get_imo()==nullptr) continue;
-        if(m->feature->size()<3) continue;
-        if(s[6]==0) continue;
-
-
-        Vector3d imo_v=m->feature->world_velocity();
-        Vector3d ekf_v(s[3],s[4],s[5]);
-
-
-
-
-        vdatas.reserve(1000000);
-        vdatas.push_back(Vdata{int(m->feature->size()),
-                               tp->frameid,
-                               m->feature->get_imo()->id,
-                               imo_v,ekf_v});
-    }
-#endif
-}
-
 void Shire::display(std::shared_ptr<HirSample> sd,
                              std::shared_ptr<PoseImo> new_imo){
     if(!draw_anything_at_all) return;
-    cout<<"display0"<<endl;
+
     if(display_index++ % draw_increment != 0) return;
-    cout<<"display"<<endl;
+
 
     auto tp=map->previous(); // this is current
     auto previous=map->previous(1); // this is current
@@ -935,23 +831,11 @@ void Shire::display(std::shared_ptr<HirSample> sd,
 
     if(run_ekf && draw_anything_at_all)
     {
-        mlog()<<"ekf draw\n";
-        PoseD Pcp=((*tp->Pnw)*previous->Pnw->inverse());
-        ekf.update(Pcp, tracker->getFeaturePool(),sd->disparity);
-
-        std::shared_ptr<FlowField> ff=ekf.get_flowfield();
-
         std::shared_ptr<FlowField> ff2=get_imo_flow_field(tp);
-        if(!(ff==nullptr ||ff2==nullptr)){
-            mlog()<<"ekf dra3w\n";
+        if(!(ff2==nullptr)){
             for(Flow& f:ff2->flows)
                 f.color=Vector3d(0,0,255);
-            ff->append(ff2);
-            show_flow(ff,"ekf and imo flows");
-            mlog()<<"shown flow\n";
-
-            // oki, one per each measurement.
-            compute_velocity_results(tp->ms,ekf.get_filter_state());
+            show_flow(ff2,"ekf and imo flows");
         }
     }
 
