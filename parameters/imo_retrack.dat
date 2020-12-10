@@ -1,0 +1,262 @@
+[HirStream - retracker]
+ # Select a variation of the KLT algorithm.
+ # Default: Standard KLT
+ # 
+ # Possible Values:
+ #  Standard KLT
+ #  KLT ZSSD
+ #  KLT Scale
+ #  KLT ZSSD and Scale
+ #  KLT Symmetric
+ #  KLT 1D ZSSD
+ #  KLT 1D ZSSD Symmetric
+ Algorithm	=	KLT ZSSD
+
+ # Default minimum distance in pixel.
+ # Default: 3
+ Default minimum distance	=	8
+
+ # Scale for Gaussian Weight Mode.
+ # Default: 1
+ Gaussian Scale	=	1
+
+ # Sigma for Gaussian Weight Mode in x-direction.
+ # Default: 1
+ Gaussian Weight Sigma X	=	1
+
+ # Sigma for Gaussian Weight Mode in y-direction.
+ # Default: 1
+ Gaussian Weight Sigma Y	=	1
+
+ # Half height of a feature in y-direction.
+ # Default: 3
+ Half Feature Window Height	=	3
+
+ # Half width of a feature in x-direction.
+ # Default: 3
+ Half Feature Window Width	=	3
+
+ # Number of level to start the tracking on. This means the lowest pyramid level
+ # to include in the tracking process. Set to 0 to include the lowest pyramid
+ # image (original image).
+ # Default: 0
+ Level to start tracking	=	0
+
+ # The maximum displacement between new and old location of a feature to assume
+ # the iteration successfull.
+ # Default: 0.1
+ Maximum displacement	=	0.1
+
+ # Maximum iterations per pyramid level.
+ # Default: 20
+ Maximum iterations	=	30
+
+ # The similarity is calculated as the sum of absolute differences (SAD) between
+ # the old and new feature windows. If the value exceeds this threshold, the
+ # feature is removed.
+ # Default: 30
+ Maximum similarity	=	60
+
+ # Maximum number of features to track.
+ # Default: 2000
+ Number of features	=	22000
+
+ # Number of downsampled pyramid levels. If set to 0, tracking is performed only
+ # on the original image.
+ # Default: 3
+ Number of pyramid levels	=	0
+
+ # X coordinate of end of ROI in pixel.
+ # Default: 639
+ ROI End X	=	2000
+
+ # Y coordinate of end of ROI in pixel.
+ # Default: 479
+ ROI End Y	=	850
+
+ # X coordinate of start of ROI in pixel.
+ # Default: 0
+ ROI Start X	=	50
+
+ # Y coordinate of start of ROI in pixel.
+ # Default: 0
+ ROI Start Y	=	150
+
+ # Enable the corner detector. If disabled, you have to make sure to setup the
+ # features yourself.
+ # Default: true
+ Use Corner Detector	=	true
+
+ # Use the predicted image location of the features in the tracking process.
+ # Otherwise the last position is used.
+ # Default: false
+ Use prediction	=	true
+
+ # Weight Mode for Tracker Versions that support it.
+ # Currently that are:
+ #  - KLT Symmetric
+ # 
+ # Default: Uniform Weights
+ # 
+ # Possible Values:
+ #  Uniform Weights
+ #  Gaussian Weights
+ Weight Mode	=	Uniform Weights
+
+ # Offset added to all weights.
+ # Default: 0
+ Weight Offset	=	0
+
+
+
+[HirStream - retracker - Corner Detector]
+ # Minimum eigenvalue of a pixel to be selected as a feature.
+ # Default: 1
+ Minimum eigenvalue	=	50000
+
+ # Use non-maxma suppression for filtering the minimum eigenvalue image. This
+ # increases greatly the performance.
+ # Default: true
+ Use Non-Maxima Suppression	=	true
+
+ # Half height of the summation window used to sum the gradient components.
+ # Default: 3
+ Window half height	=	3
+
+ # Half width of the summation window used to sum the gradient components.
+ # Default: 3
+ Window half width	=	3
+
+
+
+[HirStream - tracker]
+ # Select a variation of the KLT algorithm.
+ # Default: Standard KLT
+ # 
+ # Possible Values:
+ #  Standard KLT
+ #  KLT ZSSD
+ #  KLT Scale
+ #  KLT ZSSD and Scale
+ #  KLT Symmetric
+ #  KLT 1D ZSSD
+ #  KLT 1D ZSSD Symmetric
+ Algorithm	=	KLT ZSSD
+
+ # Default minimum distance in pixel.
+ # Default: 3
+ Default minimum distance	=	8
+
+ # Scale for Gaussian Weight Mode.
+ # Default: 1
+ Gaussian Scale	=	1
+
+ # Sigma for Gaussian Weight Mode in x-direction.
+ # Default: 1
+ Gaussian Weight Sigma X	=	1
+
+ # Sigma for Gaussian Weight Mode in y-direction.
+ # Default: 1
+ Gaussian Weight Sigma Y	=	1
+
+ # Half height of a feature in y-direction.
+ # Default: 3
+ Half Feature Window Height	=	3
+
+ # Half width of a feature in x-direction.
+ # Default: 3
+ Half Feature Window Width	=	3
+
+ # Number of level to start the tracking on. This means the lowest pyramid level
+ # to include in the tracking process. Set to 0 to include the lowest pyramid
+ # image (original image).
+ # Default: 0
+ Level to start tracking	=	0
+
+ # The maximum displacement between new and old location of a feature to assume
+ # the iteration successfull.
+ # Default: 0.1
+ Maximum displacement	=	0.1
+
+ # Maximum iterations per pyramid level.
+ # Default: 20
+ Maximum iterations	=	40
+
+ # The similarity is calculated as the sum of absolute differences (SAD) between
+ # the old and new feature windows. If the value exceeds this threshold, the
+ # feature is removed.
+ # Default: 30
+ Maximum similarity	=	80
+
+ # Maximum number of features to track.
+ # Default: 2000
+ Number of features	=	22000
+
+ # Number of downsampled pyramid levels. If set to 0, tracking is performed only
+ # on the original image.
+ # Default: 3
+ Number of pyramid levels	=	4
+
+ # X coordinate of end of ROI in pixel.
+ # Default: 639
+ ROI End X	=	1950
+
+ # Y coordinate of end of ROI in pixel.
+ # Default: 479
+ ROI End Y	=	840
+
+ # X coordinate of start of ROI in pixel.
+ # Default: 0
+ ROI Start X	=	50
+
+ # Y coordinate of start of ROI in pixel.
+ # Default: 0
+ ROI Start Y	=	150
+
+ # Enable the corner detector. If disabled, you have to make sure to setup the
+ # features yourself.
+ # Default: true
+ Use Corner Detector	=	true
+
+ # Use the predicted image location of the features in the tracking process.
+ # Otherwise the last position is used.
+ # Default: false
+ Use prediction	=	false
+
+ # Weight Mode for Tracker Versions that support it.
+ # Currently that are:
+ #  - KLT Symmetric
+ # 
+ # Default: Uniform Weights
+ # 
+ # Possible Values:
+ #  Uniform Weights
+ #  Gaussian Weights
+ Weight Mode	=	Uniform Weights
+
+ # Offset added to all weights.
+ # Default: 0
+ Weight Offset	=	0
+
+
+
+[HirStream - tracker - Corner Detector]
+ # Minimum eigenvalue of a pixel to be selected as a feature.
+ # Default: 1
+ Minimum eigenvalue	=	50000
+
+ # Use non-maxma suppression for filtering the minimum eigenvalue image. This
+ # increases greatly the performance.
+ # Default: true
+ Use Non-Maxima Suppression	=	true
+
+ # Half height of the summation window used to sum the gradient components.
+ # Default: 3
+ Window half height	=	3
+
+ # Half width of the summation window used to sum the gradient components.
+ # Default: 3
+ Window half width	=	3
+
+
+
