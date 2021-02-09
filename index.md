@@ -14,9 +14,9 @@ Shire requires a klt which is proprietary, but the annotation and evaluation too
 </video>
 
 
-## Video tag in markdown
+<!---## Video tag in markdown
 - style width works, width does not... 
-- use ffmpeg  -i input -start_number 0 -an -c:v libx264 -preset veryslow -pix_fmt yuv420p -movflags +faststart -crf 17 output.mp4
+- use ffmpeg  -i input -start_number 0 -an -c:v libx264 -preset veryslow -pix_fmt yuv420p -movflags +faststart -crf 17 output.mp4 --->
 
 
 ### Markdown
