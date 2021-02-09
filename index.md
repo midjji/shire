@@ -18,8 +18,8 @@ Shire requires a klt which is proprietary, but the annotation and evaluation too
 - style width works, width does not... 
 - use ffmpeg  -i input -start_number 0 -an -c:v libx264 -preset veryslow -pix_fmt yuv420p -movflags +faststart -crf 17 output.mp4 --->
 
-
-### Markdown
-[editor on GitHub](https://github.com/midjji/shire/edit/gh-pages/index.md)
+[edit](https://github.com/midjji/shire/edit/gh-pages/index.md)
+<!---### Markdown
+[edit](https://github.com/midjji/shire/edit/gh-pages/index.md)
 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-[documentation](https://docs.github.com/categories/github-pages-basics/)
+[documentation](https://docs.github.com/categories/github-pages-basics/)--->
